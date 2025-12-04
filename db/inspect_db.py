@@ -23,7 +23,7 @@ def show_tables():
 
             return table_names
 
-def show_table_contents(table_name: str, limit: int = 50):
+def show_table_contents(table_name: str, limit: int = 200):
     with psycopg2.connect(DATABASE_URL) as conn:
         with conn.cursor() as cur:
             cur.execute(f"SELECT * FROM {table_name} LIMIT %s;", (limit,))
