@@ -6,8 +6,6 @@ from mock_data import mock_listings
 from sqlalchemy import String, Integer, Float, create_engine
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, sessionmaker
 
-engine = create_engine(DATABASE_URL, echo=False)
-SessionLocal = sessionmaker(bind=engine)
 
 load_dotenv()
 USE_MOCK = True
@@ -18,6 +16,9 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 
 if DATABASE_URL is None:
     raise RuntimeError("DATABASE_URL not set in .env")
+
+engine = create_engine(DATABASE_URL, echo=False)
+SessionLocal = sessionmaker(bind=engine)
 
 geolocator = Nominatim(user_agent="RentBeacon")
 
